@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <form action="/search" method="POST">
+        <div class="row justify-content-center">
+            <div class="col-7">
+                <div class="container d-inline-flex gap-2 p-2 mb-3 justify-content-center">
+                    <input autocomplete="off" autofocus class="form-control w-auto" name="name" placeholder="Anime name" type="text">
+                    <button class="btn btn-light w-auto" type="submit">Search</button>
+                    <button aria-expanded="false" class="btn btn-light w-auto" type="button" data-bs-toggle="collapse" data-bs-target="#filters">Advanced Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="filters">
+                    <div class="row mb-3">
+                        <select class="form-select" name="type">
+                            <option selected value="">Type</option>
+                            {% for type in types %}
+                            <option value="{{ type }}">{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="score">
+                            <option selected value="">Score</option>
+                            {% for i in range(10) %}
+                            <option value="{{ 10 - i }}">{{ (10 - i) }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="status">
+                            <option selected value="">Status</option>
+                            {% for state in status %}
+                            <option value="{{ state }}">{{ state }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="producer">
+                            <option selected value="">Producer</option>
+                            {% for producer in producers %}
+                            <option value="{{ producer }}">{{ producer }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="rating">
+                            <option selected value="">Rating</option>
+                            {% for rating in ratings %}
+                            <option value="{{ rating }}">{{ rating }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="order_by">
+                            <option selected value="">Order By</option>
+                            {% for order in orders_by %}
+                            <option value="{{ order }}">{{ order.capitalize() }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <select class="form-select" name="order_type">
+                            <option selected value="">Order Type</option>
+                            {% for type in order_type %}
+                            <option value="{{ type }}">{{ order_type[type] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button aria-expanded="false" aria-controls="genres" class="btn btn-light mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#genres">Genres</button>
+                    <div class="collapse" id="genres">
+                        <div class="row mb-3">
+                            {% for genre in genres %}
+                            <div class="col-md-3 text-start">
+                                <input type="checkbox" class="form-check-input" id="{{ genre }}" name="genre" value="{{ genre }}">
+                                <label class="form-check-label" for="{{ genre }}">{{ genre }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+{% endblock %}

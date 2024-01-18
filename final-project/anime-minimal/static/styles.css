@@ -1,0 +1,40 @@
+.list-link {
+  color: var(--bs-pagination-color);
+  text-decoration: none;
+}
+
+.list-link:hover {
+  text-decoration: underline;
+}
+
+.pagination-nav {
+  --bs-pagination-color: white;
+}
+
+.table-link {
+  color: var(--bs-pagination-color);
+  text-decoration: none;
+}
+
+.table-link:hover {
+  text-decoration: underline;
+}
+
+.nav {
+  --bs-nav-link-color: white;
+}
+
+/* notes.html */
+.notes {
+  width: clamp(200px, 40%, 800px);
+}
+
+/* index.html */
+.index {
+  font-size: calc(0.25rem + 1.5vw);
+}
+
+.index-image {
+  width: calc(40px + 0.8vw);
+  height: calc(60px + 0.8vw);
+}/*# sourceMappingURL=styles.css.map */

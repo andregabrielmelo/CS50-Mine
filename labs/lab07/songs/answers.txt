@@ -1,0 +1,16 @@
+SELECT COUNT(*) FROM songs; // Number of songs in the 'songs' table
+
+A = // Confident and Bold (greater then 0.75)
+B = // Confident and Bold (between 0.75 and 0.50)
+C = // Confident and Calm (between 0.50 and 0.25)
+D = // Timid (between 0.25 and 0.00)
+
+A = SELECT COUNT(*) FROM songs WHERE danceability > 0.75 AND energy > 0.75 AND valence > 0.75;
+B = SELECT COUNT(*) FROM songs WHERE danceability > 0.50 AND energy > 0.50 AND valence > 0.50 - A;
+C = SELECT COUNT(*) FROM songs WHERE danceability > 0.25 AND energy > 0.25 AND valence > 0.25 - A - B;
+D = SELECT COUNT(*) FROM songs - A - B - C;
+
+// The method I use is too generic, comparing danceability, energy and valence to the same value.
+// A better way to do this is changing the values to be more specific. And you could also put the 'Artists' and 'Genres'
+// That the person listens in the formula to decide their 'aura'. Deciding their 'aura' involves a lot of factors.
+// My answer would be better if I put more factors(like 'artist' and 'genres') in the formula and be more precise in the boundaries of the 'aura'

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // Add code to check answers to questions
+            document.addEventListener('DOMContentLoaded', function() {
+                // Check answer from first trivia
+                function verifyAnswer(event) {
+                    let button = event.target;
+                    let answer = document.querySelector('.feedbackOne');
+                    if (button.innerHTML === 'Michael') {
+                        answer.innerHTML = 'Correct!';
+                        button.style.backgroundColor = 'green';
+                    } else {
+                        answer.innerHTML = 'Incorrect!';
+                        button.style.backgroundColor = 'red';
+                    }
+                }
+
+                // Attach event listeners to buttons, like putting onclick="verifyAnswer()" in each button
+                let buttons = document.querySelectorAll('#first button'); // select buttons child somethin with id="first"
+                buttons.forEach(function(button) {
+                    button.addEventListener('click', verifyAnswer);
+                });
+
+                // Check answer of the second trivia
+                document.querySelector('#second button').addEventListener('click', function() { // select button child of something with id="second"
+                    let input = document.querySelector('#second input');
+                    let answer = document.querySelector('.feedbackTwo');
+                    if (input.value === '12')
+                    {
+                        answer.innerHTML = 'Correct!';
+                        input.style.backgroundColor = 'green';
+                    }
+                    else
+                    {
+                        answer.innerHTML = 'Incorrect!';
+                        input.style.backgroundColor = 'red';
+                    }
+                    event.preventDefault();
+                });
+            });
+            </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section" id="first">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- Add multiple choice question here -->
+                <h3>Most popular names in the 90s?</h3>
+                <button>Michael</button>
+                <button>Jessica</button>
+                <button>Christopher</button>
+                <button>Matthew</button>
+                <button>Ashley</button>
+                <p class="feedbackOne"></p><!-- answer is correct or incorrect-->
+            </div>
+
+            <div class="section" id="second">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- Add free response question here -->
+                <h3>How many languages are written from right to left?</h3>
+                <form>
+                    <input autocomplete="off" autofocus placeholder="Answer" type="text">
+                    <button>Check Answer</button>
+                </form>
+                <p class="feedbackTwo"></p><!-- answer is correct or incorrect-->
+            </div>
+        </div>
+    </body>
+</html>
