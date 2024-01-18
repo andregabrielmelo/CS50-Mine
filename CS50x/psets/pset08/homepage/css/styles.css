@@ -1,0 +1,50 @@
+.text-justify {
+    text-align: justify!important;
+    font-size: 1rem!important;
+    width: calc(3rem + 70vw)!important;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    text-weight: 700;
+    font-style: italic;
+    text-transform: capitalize;
+    text-shadow: 0;
+}
+
+.references {
+    padding-top: 1rem;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.references-text {
+    text-align: justify;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    width: calc(3rem + 70vw);
+    margin-bottom: 0;
+}
+
+.vitamin-trivia {
+    padding-bottom: 3px;
+}
+
+.question {
+    font-size: calc(.75rem + .3vw)!important;
+}
+
+#madeBy {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    box-sizing: border-box;
+    font-weight: 750;
+}

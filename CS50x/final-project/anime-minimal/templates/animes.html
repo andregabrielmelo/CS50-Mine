@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Animes
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid">
+    <div class="mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Episodes</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in anime_data %}
+                <tr>
+                    <td>{{ row["rank"] }}</td>
+                    <td><a class="table-link" href="{{ url_for('anime', id=row["mal_id"]) }}">{{ row["title"] }}</a></td>
+                    <td>{{ row["episodes"] }}</td>
+                    <td>{{ row["type"] }}</td>
+                    <td>{{ row["status"] }}</td>
+                    <td>{{ row["score"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <nav name="pagination">
+        <ul class="pagination justify-content-center pagination-nav" name="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a role="button" class="page-link" href="{{ url_for('animes', page=page_obj.previous_page_number, **parameters_without_page) }}">Previous</a></li>
+            {% endif %}
+        
+            {% if page_obj.total_pages != 1 %}
+                {% for n in range(page_obj.number, (page_obj.number + 4)) %}
+                    {% if n <= page_obj.total_pages %}
+                    <li class="page-item"><a role="button" class="page-link {% if n == page_obj.number %} active {% endif %}" href="{{ url_for('animes', page=n, **parameters_without_page) }}">{{ n }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page_obj.has_next %}
+                <li class="page-item"><a role="button" class="page-link" href="{{ url_for('animes', page=page_obj.next_page_number, **parameters_without_page) }}">Next</a></li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </nav>          
+</div>
+
+{% endblock %}
+        

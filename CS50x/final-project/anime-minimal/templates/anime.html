@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ anime["title"] }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="container text-start">
+        <div class="row">
+            <div class="col-4 row-gap-3">
+                <div class="row">
+                    <img src="{{ anime["images"]["webp"]["image_url"] }}" class="rounded float-start" alt="Image of {{ anime["title"] }}">
+                </div>
+                <div class="row" hidden>
+                    <div class="col">
+                        <h3>Alternative Titles</h3>
+                        <hr class="border border-white opacity-75 mt-1">
+                        <p>Synonyms:
+                            {% for row in anime["titles"] %}
+                                {% if row["type"] == 'Synonym' %}
+                                    {{ row["title"] }},
+                                {% endif %}
+                            {% endfor  %}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="fw-700 fs-3 mt-2">Information</h3>
+                        <hr class="border border-white opacity-75 mt-1 mb-1">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Type: {{ anime["type"] }}</li>
+                            <li class="list-group-item">Source: {{ anime["source"] }}</li>
+                            {% if anime["episodes"] is not none and anime["episodes"] > 1 and not airing %}
+                            <li class="list-group-item">Episodes: {{ anime["episodes"] }}</li>
+                            {% endif %}
+                            <li class="list-group-item">Status: {{ anime["status"] }}</li>
+                            {% if not anime["airing"] %}
+                            <li class="list-group-item">Aired: {{ anime["aired"]["string"] }}</li>
+                            {% endif %}
+                            <li class="list-group-item">Duration: {{ anime["duration"] }}isode</li>
+                            <li class="list-group-item">Rating: {{ anime["rating"] }}</li>
+                            {% if anime["airing"] %}
+                            <li class="list-group-item">Broadcast: {{ anime["broadcast"]["string"] }}</li>
+                            {% endif %}
+                            <li class="list-group-item">Producer{% if anime["producers"]|length > 1 %}s{% endif %}:
+                                {% for producer in anime["producers"] %}
+                                    {{ producer["name"] }}{{"," if not loop.last else ""}}
+                                {% endfor %}
+                            </li>                   
+                            {% if anime["licensors"] %}         
+                            <li class="list-group-item">Licensor{% if anime["licensors"]|length > 1 %}s{% endif %}:
+                                {% for licensor in anime["licensors"]%}
+                                    {{ licensor["name"] }}{{"," if not loop.last else ""}}
+                                {% endfor %}
+                            </li>
+                            {% endif %}
+                            <li class="list-group-item">Studio{% if anime["studios"]|length > 1 %}s{% endif %}:
+                                {% for studio in anime["studios"] %}
+                                    {{ studio["name"] }}{{"," if not loop.last else ""}}
+                                {% endfor %}
+                            </li>
+                            <li class="list-group-item">Genre{% if anime["genres"]|length > 1 %}s{% endif %}:
+                            {% for genre in anime["genres"] %}
+                                {{ genre["name"] }}{{"," if not loop.last else ""}}
+                            {% endfor %}
+                            </li>
+                            {% if anime["explicit_genres"] %}
+                            <li class="list-group-item">{{ anime["explicit_genres"] }}</li>
+                            {% endif %}
+                            {% if anime["themes"] %}
+                            <li class="list-group-item">Theme{{"s:" if anime["themes"]|length > 1 else ":"}}
+                            {% endif %}
+                            {% for theme in anime["themes"] %}
+                                {{ theme["name"] }}{{"," if not loop.last else ""}}
+                            {% endfor %}
+                            </li>
+                            <li class="list-group-item">Demographic{% if anime["demographics"]|length > 1 %}s{% endif %}:
+                                {% for demographic in anime["demographics"] %}
+                                    {{ demographic["name"] }}{{"," if not loop.last else ""}}
+                                {% endfor %}
+                            </li>
+                            {% if anime["background"] %}
+                            <li class="list-group-item">{{ anime["background"] }}</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row" hidden>
+                    <div class="col">
+                        <h3 class="fw-700 fs-3">Avaible At:</h3>
+                        <hr class="border border-white opacity-75 mt-1 mb-1">
+                        <ul class="list-group list-group-flush">
+                        {% for item in anime["external"] %}
+                            <li class="list-group-item"><a href="{{ item["url"] }}">{{ item["name"] }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="fw-700 fs-3">Streaming Platforms</h3>
+                        <hr class="border border-white opacity-75 mt-1 mb-1">
+                        <ul class="list-group list-group-flush">
+                        {% for item in anime["streaming"] %}
+                            <li class="list-group-item"><a href="{{ item["url"] }}">{{ item["name"] }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <h1>{{ anime["title"] }}</h1>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="d-inline-flex gap-3">
+                            <p class="fw-500 fs-2 mb-0">Rank #{{ anime["rank"] }}</p>
+                            <p class="fw-500 fs-2 mb-0">Score {{ anime["score"] }}</p>
+                            <p class="fw-500 fs-2 mb-0">{{ anime["status"] }}</p>
+                            {% if anime["season"] is not none%}
+                            <p class="fw-500 fs-2 mb-0">{{ anime["season"].capitalize() }} of {{ anime["year"] }}</p>
+                            {% endif %}
+                        </div>
+                        <hr class="border border-white opacity-75 mt-1">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <h3 class="fw-700 fs-3">Synopsis</h3>
+                        <hr class="border border-white opacity-75">
+                        <p class="fw-200 fs-6">{{ anime["synopsis"] }}</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <h3 class="fw-700 fs-3">Relations</h3>
+                        <hr class="border border-white opacity-75">
+                        {% for relation in anime["relations"] %}
+                            <div class="row">
+                                <div class="col-2 text-end pe-0">
+                                    <p class="fw-400 fs-6 m-0">{{ relation["relation"] }}:</p>
+                                </div>
+                                <div class="col-10">
+                                    <p class="fw-200 fs-6 m-0"><a {% if relation["entry"][0]["type"] == 'anime' %} href="{{ url_for('anime', id=relation["entry"][0]["mal_id"]) }}" {% endif %}>{{ relation["entry"][0]["name"] }}</a> ({{ relation["entry"][0]["type"].capitalize() }})</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h3 class="fw-700 fs-3">Songs</h3>
+                        <hr class="border border-white opacity-75">
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="d-flex justify-content-between fw-400 fs-5" data-bs-toggle="collapse" data-bs-target="#openings"><span>Openings</span><span class="dropdown-toggle"></span></h3>
+                                <div class="collapse" id="openings">                                                               
+                                    {% for item in anime["theme"]["openings"] %}
+                                    <p class="fw-200 fs-6 mb-1">{{ item }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <h3 class="d-flex justify-content-between fw-400 fs-5" data-bs-toggle="collapse" data-bs-target="#endings"><span>Endings</span><span class="dropdown-toggle"></span></h3>
+                                <div class="collapse" id="endings">
+                                    {% for item in anime["theme"]["endings"] %}
+                                    <p class="fw-200 fs-6 mb-1">{{ item }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

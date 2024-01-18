@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Notes 
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid notes">
+    {% if user_notes[0][0] is not none %}
+        <ul class="list-group list-group-flush fs-6">
+        {% for note in user_notes[0][0].split('/0') %}
+            <li class="list-group-item"><a class="list-link" href="animes/1?q={{ note }}">{{ note }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="/notes" method="POST">
+        <input autocomplete="off" autofocus class="form-control" name="typed" placeholder="Notes" type="text">
+        <input type="submit" style="display: none"/>
+        <button class="btn btn-light mt-3 mb-2" name="delete" type="submit">Delete</button>
+    </form>
+</div>
+
+{% endblock %}
+        

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+        crossorigin="anonymous">
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+        <!-- CSS files -->
+        <link href="../css/styles.css" rel="stylesheet">
+
+        <!-- JS files -->
+        <script src="../js/scriptC.js"></script>
+
+        <title>Vitamin C</title>
+    </head>
+    <body>
+        <header>
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-sm bg-body-tertiary">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav">
+                                <li class="navbar-item">
+                                    <a class="nav-link" href="../index.html">Home</a>
+                                </li>
+                                <li class="navbar-item">
+                                    <a class="nav-link" href="vitaminA.html">Vitamin A</a>
+                                </li>
+                                <li class="navbar-item">
+                                    <a class="nav-link active" href="vitaminC.html">Vitamin C</a>
+                                </li>
+                                <li class="navbar-item">
+                                    <a class="nav-link" href="vitaminD.html">Vitamin D</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <h1 class="fs-1">Vitamin C</h1>
+                <h6 class="fs-6">Healer</h6>
+                <p class="text-start text-justify">
+                    Vitamin C, also called ascorbic acid, is a water-soluvle vitamin that is not well
+                    stored, so it must be taken daily. It helps controlling infections and healing
+                    wounds, being also a antioxidant that can neutralize harmful free radicals. It
+                    is needed make collagen, hormones and chemical messengers. Estimulates white
+                    blood cells.
+                </p>
+                <p class="text-start text-justify">
+                    Interisting enough, megadoses of this vitamin is generally not considered toxic, because the
+                    body can not absorb this vitamin well, it's absorption decreases once body's
+                    tissues become saturated with vitamin C and any excess will be excreted in urine.
+                    But overdose can still happen, causing diarrhea, increased formation of kidney stones and
+                    level of uric acid.
+                </p>
+                <p class="text-start text-justify">
+                    Fruits and vegetables are the best sources of this vitamin, mainly citrus fruits(oranges, kiwi, lemon, grapefruit)
+                    and cruciferous vegetables (broccoli, Brussels sprouts, cabbage, cauliflower), in addition too bell peppers, starwberries,
+                    tomatoes and white potatoes.
+                </p>
+            </div>
+            <!-- TODO: Ask recommended daily quantities of vitamins -->
+            <div class="container vitamin-trivia">
+                <form id="vitaminC-form">
+                    <h4 class="question">What is the recommended amount of vitamin C daily for man older than 18 years old?</h4>
+                    <input autocomplete="off" autofocus type="text" placeholder="Quantity in mg" id="vitaminC-answer">
+                    <button type="submit" id="vitaminC-button">Check</button>
+                    <p id="vitaminC-feedback"></p>
+                </form>
+            </div>
+        </main>
+        <footer>
+            <div class="container references">
+                <h5>References</h5>
+                <p class="references-text">
+                    The content on this site was based on <a href="https://www.hsph.harvard.edu/nutritionsource/vitamin-c/" target="_blank">Harvard T. H. Chan School of Public Health</a>
+                </p>
+                <p id="madeBy">Site made by Andr&#233; Melo</p>
+            </div>
+        </footer>
+    </body>
+</html>
