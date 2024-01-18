@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block main %}
+    <h3 class="fs-1">Portfolio</h3>
+    <div class="mb-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Market Value</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in portfolio %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ row["symbol"] }}</td>
+                    <td>{{ row["shares"] }}</td>
+                    <td>{{ current_prices[row["symbol"]] | usd }}</td>
+                    <td>{{ (current_prices[row["symbol"]] * row["shares"]) | usd }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid same-line">
+        <p class="fs-6">Balance: {{ balance[0]["cash"] | usd }}</p>
+        <p class="fs-6">Grand Total: {{ grand_total | usd }}</p>
+        <form action="/addCash">
+            <div class="mb-3">
+                <button class="btn btn-primary btn-sm" type="submit">Add Cash</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
